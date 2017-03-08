@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="angular-min.js"></script>
+	<script type="text/javascript">
+		var x= angular.module('myapp',['ngRoute']);
+		x.controller('cont', function($scope){
+	
+			$scope.names=[{"name" : 'Akshi' , "country" :  'India'},
+					{"name" : 'Priti' , "country":  'Pakistan'},
+					{"name" : 'Punreet' , "country":  'America'},
+					{"name" : 'Sumit' , "country":  'Malaysia'},
+					{"name" : 'Kanhaiya' , "country":  'Afganistan'},
+					{"name" : 'Preeti' , "country":  'Bangladesh'},
+					{"name" : 'Sahib' , "country":  'Dubai'},
+					{"name" : 'Gopal' , "country":  'Japan'}
+
+
+			];
+			});
+		x.config(function($routeProvider)
+		{
+
+			$routeProvider
+			.when('/',{
+				templateUrl : 'new.html'
+			})
+			.when('/anotherPage',{
+				templateUrl : 'new.html'
+			})
+			.otherwise({
+				redirectTo:'/'
+
+
+			})
+
+		
+		});	
+
+	
+	</script>
+	<style>
+		table,tr,td,th{
+			border-collapse: collapse;
+			border: 2px solid black;
+			text-align: center;
+
+		}
+	</style>
+</head>
+<body ng-app="myapp" ng-controller="cont">
+<center>
+<table >
+<tr><th>S.no.</th>
+<th>Name</th>
+<th>Country</th></tr>
+<tr ng-repeat ="x in names | orderBy : 'name'">
+	<td>{{$index+1}}</td>
+	<td>{{x.name}}</td>
+	<td>{{x.country}}</td>
+</tr>	
+</table>
+<div ng-view></div>
+</center>
+</body>
+</html>
